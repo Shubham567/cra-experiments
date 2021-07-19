@@ -1,9 +1,9 @@
 // import './App.css';
 import { useEffect, useState } from "react";
-import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
 import routes from './routes';
 import {useSelector} from 'react-redux';
-import { Grid, Drawer, IconButton, Divider, List, ListItem, ListItemText, ListItemIcon, makeStyles, useTheme, Link as MUILink, Typography } from "@material-ui/core";
+import { Drawer, IconButton, Divider, List, ListItem, ListItemText, ListItemIcon, makeStyles, useTheme, Link as MUILink, Typography } from "@material-ui/core";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import {APP_DETAILS} from "./defs/appDetails";
@@ -56,15 +56,21 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: -drawerWidth,
+
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: 0,
+    
   },
+  menuButtonOpen: {
+    background: theme.palette.background.default,
+    "&:hover":{
+      background: theme.palette.primary.dark
+    }
+  }
 }));
 
 function App() {
@@ -102,7 +108,7 @@ function App() {
           <Drawer
             className={classes.drawer}
             variant="persistent"
-            anchor="left"
+            anchor="right"
             open={openMenu}
             classes={{
               paper: classes.drawerPaper,
@@ -113,13 +119,13 @@ function App() {
                 {APP_DETAILS.name}
               </Typography>
               <IconButton onClick={handleDrawerClose}>
-                {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                {theme.direction === 'ltr' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
               </IconButton>
             </div>
             <Divider />
             <List>
               {routes.map((route) => (
-                  <MUILink to={route.href} key={route.href}>
+                  <MUILink href={route.pathname} key={route.pathname}>
                     <ListItem button>
                       <ListItemIcon>{route.icon}</ListItemIcon>
                       <ListItemText primary={route.name} />
@@ -140,7 +146,7 @@ function App() {
       {
         !openMenu &&
         <div style={{position: "fixed", zIndex: 5000, right: 30, bottom:  20}}>
-          <IconButton onClick={handleDrawerOpen}><Menu/></IconButton>
+          <IconButton className={classes.menuButtonOpen} onClick={handleDrawerOpen}><Menu/></IconButton>
         </div>
         }
     </BrowserRouter>

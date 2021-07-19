@@ -1,0 +1,49 @@
+.clip-img{
+    background: linear-gradient(to right bottom,#fd8814bd,#44745ab9), url("./../assets/ifg.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    /* clip-path: url(#myClip); */
+    clip-path: polygon(30% 0, 50% 0, 70% 100%, 50% 100%);
+    animation: slideSoup 4s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes slideSoup{
+    0%{
+        clip-path: polygon(0% 0, 20% 0, 40% 100%, 20% 100%);
+        
+    }
+    50%{
+        clip-path: polygon(10% 0, 65% 0, 85% 100%, 25% 100%);
+    }
+
+    100%{
+        clip-path: polygon(60% 0, 80% 0, 100% 100%, 80% 100%);
+    }
+}
+
+@keyframes showHide {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+.head-title{
+    position: absolute;
+    top: 98%;
+    left: 50%;
+    transform: translate(-50%,-100%);
+}
+
+.head-title-primary{
+    letter-spacing: 10px !important;
+    font-weight: 400 !important;
+    font-family: 'Courier New', Courier, monospace !important;
+    animation: showHide 4s ease-in-out infinite alternate-reverse;
+}
