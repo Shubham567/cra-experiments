@@ -59,7 +59,7 @@ export default function EditorPage() {
             // log("Cleaning Up Effect");
 
         }
-    }, [editorRef]);
+    }, [editorRef.current]);
 
     return (
         <Page>
