@@ -26,7 +26,7 @@ const  config =  {
   };
 
 
-export default function EditorPage() {
+export default function EditorPage({match}) {
 
     const editorRef = useRef(null);
     const [s , setS] = useState(0);
@@ -45,17 +45,24 @@ export default function EditorPage() {
     // const monaco = useMonaco();
 
     useEffect(() => {
+        if(!firebase.apps.length){
+            firebase.initializeApp(config);
+        }else{
+            firebase.app();
+        }
+    }, [])
+
+    useEffect(() => {
         if(!editorRef.current){
             return;
         }
-        firebase.initializeApp(config);
-        const dbRef = firebase.database().ref().child("pair");
-
-        dbRef.on("value",d => console.log(d.val()));
-
+        const dbRef = firebase.database().ref().child(`pair${match?.params.id || 0}`);
+    
         // const firepad = fromMonaco(dbRef,monaco.editor.IStandaloneCodeEditor);
         const firepad = fromMonaco(dbRef,editorRef.current);
         console.log(firepad,"test");
+        const name = prompt("Enter your Name :");
+        firepad.setUserName(name);
 
         return () => {
             // log("Cleaning Up Effect");

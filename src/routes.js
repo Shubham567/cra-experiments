@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 
 const routes = [
     {pathname: "/",component: <Home /> , props: {exact: true}, name: "Home", icon: <HomeOutlined />},
-    {pathname: "/editor",component: <EditorPage /> , props: {}, name: "Editor", icon: <Edit/>},
+    {pathname: "/editor/:id",component: <EditorPage /> , props: {}, name: "Editor", icon: <Edit/>},
     {pathname: "/flag",component: <ClipPage /> , props: {}, name: "Flag", icon: <Flag />},
 ]
 

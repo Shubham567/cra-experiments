@@ -26,7 +26,7 @@ export default function Home() {
                     </Grid>
                     <Grid item>
                         <Typography variant="h5" component="h2"  align="center">
-                            Quickly Kick Start your Redux CRA app with React Router and Material UI
+                            Quickly Kick Start your Redux CRA app with React Router and Material UI.
                         </Typography>
                     </Grid>
                     <Grid item>
