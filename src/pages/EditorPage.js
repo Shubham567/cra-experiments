@@ -29,9 +29,11 @@ const  config =  {
 export default function EditorPage() {
 
     const editorRef = useRef(null);
+    const [s , setS] = useState(0);
 
     function handleEditorDidMount(editor, monaco) {
         editorRef.current = editor;
+        setS(s+1);
     }
 
     const [logs,setLogs]  = useState([""]);
@@ -59,7 +61,7 @@ export default function EditorPage() {
             // log("Cleaning Up Effect");
 
         }
-    }, [editorRef.current]);
+    }, [s]);
 
     return (
         <Page>
